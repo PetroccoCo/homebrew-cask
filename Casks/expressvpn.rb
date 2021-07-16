@@ -1,13 +1,16 @@
 cask "expressvpn" do
-  version "7.11.2.2"
-  sha256 "a349a32ef60e86ca42db35ef3cba493e1ee69887818559fcb028ce629a82843e"
+  version "10.3.1.25"
+  sha256 "fe332dd5425a8c149f15be40657a96f4f4db5ae222e1988ee4113b2af3db7396"
 
-  url "https://download.expressvpn.xyz/clients/mac/expressvpn_mac_#{version}_release.pkg"
-  appcast "https://www.macupdater.net/cgi-bin/check_urls/check_url_redirect.cgi?url=https://www.expressvpn.xyz/clients/latest/mac"
+  url "https://www.expressvpn.works/clients/mac/expressvpn_mac_#{version}_release.pkg"
   name "ExpressVPN"
-  homepage "https://www.expressvpn.xyz/vpn-software/vpn-mac/"
+  desc "VPN client for secure internet access and private browsing"
+  homepage "https://www.expressvpn.works/"
 
-  auto_updates true
+  livecheck do
+    url "https://www.expressvpn.works/clients/latest/mac"
+    strategy :header_match
+  end
 
   pkg "expressvpn_mac_#{version}_release.pkg"
 

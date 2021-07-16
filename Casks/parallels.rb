@@ -1,26 +1,43 @@
 cask "parallels" do
-  version "16.0.0-48916"
-  sha256 "a87596f7731654da4ef1d88a0d30a905a9982987b0f112c023ad5bd348376cfd"
+  if Hardware::CPU.intel?
+    version "16.5.1-49187"
+    sha256 "01fe58c43ea1df24b7e9231340bf28b12fd1472b777b05687452bcb24d337944"
+
+    livecheck do
+      url "https://www.parallels.com/directdownload/pd#{version.major}/intel/"
+      strategy :header_match
+    end
+  else
+    version "16.5.0-50692"
+    sha256 "029eceae6e348e3257112aa59b63bc5db96288a0846effaa14f4a1e87d77b6c3"
+
+    livecheck do
+      url "https://www.parallels.com/directdownload/pd#{version.major}/m1/"
+      strategy :header_match
+    end
+  end
 
   url "https://download.parallels.com/desktop/v#{version.major}/#{version}/ParallelsDesktop-#{version}.dmg"
-  appcast "https://kb.parallels.com/en/125053"
   name "Parallels Desktop"
+  desc "Desktop virtualization software"
   homepage "https://www.parallels.com/products/desktop/"
 
   auto_updates true
-  depends_on macos: ">= :sierra"
-  # This .dmg cannot be extracted normally
-  # Original discussion: https://github.com/Homebrew/homebrew-cask/pull/67202
-  container type: :naked
+  depends_on macos: ">= :high_sierra"
+
+  app "Parallels Desktop.app"
 
   preflight do
-    system_command "/usr/bin/hdiutil",
-                   args: ["attach", "-nobrowse", "#{staged_path}/ParallelsDesktop-#{version}.dmg"]
-    system_command "/Volumes/Parallels Desktop #{version.major}/Parallels Desktop.app/Contents/MacOS/inittool",
-                   args: ["install", "-t", "#{appdir}/Parallels Desktop.app"],
+    system_command "chflags",
+                   args: ["nohidden", "#{staged_path}/Parallels Desktop.app"]
+    system_command "xattr",
+                   args: ["-d", "com.apple.FinderInfo", "#{staged_path}/Parallels Desktop.app"]
+  end
+
+  postflight do
+    system_command "#{appdir}/Parallels Desktop.app/Contents/MacOS/inittool",
+                   args: ["init"],
                    sudo: true
-    system_command "/usr/bin/hdiutil",
-                   args: ["detach", "/Volumes/Parallels Desktop #{version.major}"]
   end
 
   uninstall_preflight do
@@ -35,19 +52,15 @@ cask "parallels" do
     "/usr/local/bin/prlctl",
     "/usr/local/bin/prlexec",
     "/usr/local/bin/prlsrvctl",
-    "/Applications/Parallels Desktop.app",
-    "/Applications/Parallels Desktop.app/Contents/Applications/Parallels Link.app",
-    "/Applications/Parallels Desktop.app/Contents/Applications/Parallels Mounter.app",
-    "/Applications/Parallels Desktop.app/Contents/Applications/Parallels Technical Data Reporter.app",
-    "/Applications/Parallels Desktop.app/Contents/MacOS/Parallels Service.app",
-    "/Applications/Parallels Desktop.app/Contents/MacOS/Parallels VM.app",
   ]
 
   zap trash: [
     "~/.parallels_settings",
+    "~/Library/Application Scripts/com.parallels.desktop*",
     "~/Library/Caches/com.apple.helpd/Generated/com.parallels.desktop.console.help*",
     "~/Library/Caches/com.parallels.desktop.console",
     "~/Library/Caches/Parallels Software/Parallels Desktop",
+    "~/Library/Containers/com.parallels.desktop*",
     "~/Library/Logs/parallels.log",
     "~/Library/Parallels/Parallels Desktop",
     "~/Library/Preferences/com.parallels.desktop.console.LSSharedFileList.plist",

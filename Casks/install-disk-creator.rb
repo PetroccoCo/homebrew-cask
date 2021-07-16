@@ -1,9 +1,10 @@
 cask "install-disk-creator" do
-  version :latest
+  version "1.5"
   sha256 :no_check
 
   url "https://macdaddy.io/InstallDiskCreator.zip"
   name "Install Disk Creator"
+  desc "Utility to create bootable system install disks"
   homepage "https://macdaddy.io/install-disk-creator/"
 
   app "Install Disk Creator.app"

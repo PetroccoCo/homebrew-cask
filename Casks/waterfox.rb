@@ -1,12 +1,18 @@
 cask "waterfox" do
-  version "2020.02"
-  sha256 "9c27aac645c269e765229adeeb48dcd298aab3b578709c70f3b9acdfdad07275"
+  version "3.2.3"
+  sha256 "d1c29651b3d39c509bab58054161ff60435fb639165d1c695078bd7e69a63c5a"
 
-  # storage-waterfox.netdna-ssl.com/ was verified as official when first introduced to the cask
-  url "https://storage-waterfox.netdna-ssl.com/releases/osx64/installer/Waterfox%20Classic%20#{version}%20Setup.dmg"
-  appcast "https://www.waterfox.net/releases/"
+  url "https://cdn.waterfox.net/releases/osx64/installer/Waterfox%20G#{version}%20Setup.dmg"
   name "Waterfox"
+  desc "Web browser"
   homepage "https://www.waterfox.net/"
+
+  livecheck do
+    url "https://www.waterfox.net/download/"
+    regex(%r{href=.*?/Waterfox%20G(\d+(?:\.\d+)+)%20Setup\.dmg}i)
+  end
+
+  depends_on macos: ">= :yosemite"
 
   app "Waterfox.app"
 

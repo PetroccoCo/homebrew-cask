@@ -1,11 +1,16 @@
 cask "jumpshare" do
-  version "2.6.4"
-  sha256 "e12adcd32da3cb9443728c6a3718376e69c57a36e8bd575ed13be14df0631b08"
+  version "2.6.9,97"
+  sha256 "0f493552679291847971e51a54b0dca3b360be723edc2213290edc2e88398237"
 
-  url "https://apps.jumpshare.com/desktop/mac/updates/Jumpshare-#{version}.tar.bz2"
-  appcast "https://apps.jumpshare.com/desktop/mac/updates/appcast.xml"
+  url "https://apps.jumpshare.com/desktop/mac/updates/Jumpshare-#{version.before_comma}.tar.bz2"
   name "Jumpshare"
+  desc "File sharing, screen recording, and screenshot capture app"
   homepage "https://jumpshare.com/"
+
+  livecheck do
+    url "https://apps.jumpshare.com/desktop/mac/updates/appcast.xml"
+    strategy :sparkle
+  end
 
   depends_on macos: ">= :high_sierra"
 

@@ -1,12 +1,19 @@
 cask "apache-couchdb" do
-  version "3.1.0"
-  sha256 "a6309b41c60db137877f67ebb4b4d1674cdba3c0abac247c6dff89cd591ca116"
+  version "3.1.1"
+  sha256 "33bec530601dabc7d02dd1ff3a082b098bfaca90e12368fb848fb75e79f77634"
 
-  # couchdbneighbourhoodie.fra1.digitaloceanspaces.com/ was verified as official when first introduced to the cask
-  url "https://couchdbneighbourhoodie.fra1.digitaloceanspaces.com/downloads/#{version}/mac/Apache-CouchDB.zip"
-  appcast "https://docs.couchdb.org/en/stable/whatsnew/index.html"
+  url "https://couchdbneighbourhoodie.fra1.digitaloceanspaces.com/downloads/#{version}/mac/Apache-CouchDB.zip",
+      verified: "couchdbneighbourhoodie.fra1.digitaloceanspaces.com/"
   name "Apache CouchDB"
+  desc "Multi-master syncing database"
   homepage "https://couchdb.apache.org/"
+
+  livecheck do
+    url "https://neighbourhood.ie/download-apache-couchdb-mac/"
+    regex(%r{href=.*?/(\d+(?:\.\d+)+)/mac/Apache[._-]?CouchDB\.zip}i)
+  end
+
+  depends_on macos: ">= :yosemite"
 
   app "Apache CouchDB.app"
 

@@ -1,13 +1,19 @@
 cask "streamlabs-obs" do
-  version "0.23.4"
-  sha256 "dd926ff01ab1f57017a3d24361415eae6ed5c05a1efd4f9cb880d24471c32a5e"
+  version "1.1.2"
+  sha256 "26b2fa394fbe1edb7d3665a9fde6608967bf6e3c753dd5def52a3c871aed2d17"
 
   url "https://slobs-cdn.streamlabs.com/Streamlabs+OBS-#{version}.dmg"
-  appcast "https://macupdater.net/cgi-bin/check_urls/check_url_redirect.cgi?url=https://streamlabs.com/slobs/download&user_agent=Mac%20OS%20X"
   name "Streamlabs OBS"
+  desc "All-in-one live streaming software"
   homepage "https://streamlabs.com/"
 
+  livecheck do
+    url "https://slobs-cdn.streamlabs.com/latest-mac.yml"
+    strategy :electron_builder
+  end
+
   auto_updates true
+  depends_on macos: ">= :mojave"
 
   app "Streamlabs OBS.app"
 

@@ -1,9 +1,10 @@
 cask "amorphousdiskmark" do
-  version :latest
+  version "1.2.3,9"
   sha256 :no_check
 
   url "https://katsurashareware.com/dl/AmorphousDiskMark.zip"
   name "AmorphousDiskMark"
+  desc "App to measure storage read/write performance"
   homepage "https://katsurashareware.com/pgs/adm.html"
 
   app "AmorphousDiskMark.app"

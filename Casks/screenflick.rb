@@ -1,11 +1,18 @@
 cask "screenflick" do
-  version "2.7.52"
-  sha256 "fdccfa2d9a25e0f2cf77006ac6c0ff960d62785b6dae536030d88257628ef486"
+  version "2.7.59"
+  sha256 "c2e853cb40c196848c87dde5bd511ee3970b80e3c8f2786ffd120d1cb61743b7"
 
   url "https://store.araelium.com/screenflick/downloads/versions/Screenflick#{version}.zip"
-  appcast "https://arweb-assets.s3.amazonaws.com/downloads/screenflick/updates.json"
   name "Screenflick"
-  homepage "https://www.araelium.com/screenflick/"
+  desc "Screen recorder with audio"
+  homepage "https://www.araelium.com/screenflick-mac-screen-recorder"
+
+  livecheck do
+    url "https://arweb-assets.s3.amazonaws.com/downloads/screenflick/updates.json"
+    regex(%r{/Screenflick(\d+(?:\.\d+)+)\.zip}i)
+  end
+
+  depends_on macos: ">= :sierra"
 
   app "Screenflick.app"
 end

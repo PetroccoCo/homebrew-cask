@@ -1,10 +1,10 @@
 cask "kitty" do
-  version "0.18.3"
-  sha256 "a1b1f098c7232f81270fee3aed180dad2c93a33f06be8eed78991ad2ca4d1fc8"
+  version "0.21.2"
+  sha256 "d50e1592b5a02290610239313fccb950f6f60660ef180cd53b835eea5e052375"
 
   url "https://github.com/kovidgoyal/kitty/releases/download/v#{version}/kitty-#{version}.dmg"
-  appcast "https://github.com/kovidgoyal/kitty/releases.atom"
   name "kitty"
+  desc "GPU-based terminal emulator"
   homepage "https://github.com/kovidgoyal/kitty"
 
   depends_on macos: ">= :sierra"
@@ -22,7 +22,7 @@ cask "kitty" do
   end
 
   zap trash: [
-    "~/.config/kitty",
+    "~/Library/Caches/kitty",
     "~/Library/Preferences/kitty",
     "~/Library/Saved Application State/net.kovidgoyal.kitty.savedState",
   ]

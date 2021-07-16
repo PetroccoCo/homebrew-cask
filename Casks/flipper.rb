@@ -1,12 +1,11 @@
 cask "flipper" do
-  version "0.55.0"
-  sha256 "65f17a347952059f89c0256702b9efde59d9a16b24eea00b730d374187335ac2"
+  version "0.98.0"
+  sha256 "b494e273209dc5477c0d9bec4964e7c22f99fc4df7e921b294b62119162cd7a7"
 
-  # github.com/facebook/flipper/ was verified as official when first introduced to the cask
-  url "https://github.com/facebook/flipper/releases/download/v#{version}/Flipper-mac.zip"
-  appcast "https://github.com/facebook/flipper/releases.atom"
+  url "https://github.com/facebook/flipper/releases/download/v#{version}/Flipper-mac.dmg",
+      verified: "github.com/facebook/flipper/"
   name "Facebook Flipper"
-  name "Sonar"
+  desc "Desktop debugging platform for mobile developers"
   homepage "https://fbflipper.com/"
 
   app "Flipper.app"

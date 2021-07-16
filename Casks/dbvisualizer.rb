@@ -1,11 +1,16 @@
 cask "dbvisualizer" do
-  version "11.0.4"
-  sha256 "ce125d24936c26bdea14c0046c69c1ed11154bdc49762415f2b8535262335891"
+  version "12.1"
+  sha256 "d1b6ad89d4e366d4b0921004a7dcf2445368567efd8eca77dc0919fc55707515"
 
   url "https://www.dbvis.com/product_download/dbvis-#{version}/media/dbvis_macos_#{version.dots_to_underscores}_jre.dmg"
-  appcast "https://www.dbvis.com/download/#{version.major}.0"
   name "DbVisualizer"
+  desc "Database management and analysis tool"
   homepage "https://www.dbvis.com/"
+
+  livecheck do
+    url "https://www.dbvis.com/download"
+    regex(/Latest\s*Version:\s*(\d+(?:\.\d+)*)/i)
+  end
 
   app "DbVisualizer.app"
   installer script: {

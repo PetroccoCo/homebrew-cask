@@ -1,10 +1,14 @@
 cask "qqmusic" do
-  version :latest
+  version "7.6.5,69866"
   sha256 :no_check
 
   url "https://dldir1.qq.com/music/clntupate/mac/QQMusicMac_Mgr.dmg"
+  appcast "https://y.qq.com/download/download.html"
   name "QQ音乐"
+  desc "Chinese music streaming application"
   homepage "https://y.qq.com/"
+
+  auto_updates true
 
   app "QQMusic.app"
 

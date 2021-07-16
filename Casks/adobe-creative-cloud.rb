@@ -1,10 +1,26 @@
 cask "adobe-creative-cloud" do
-  version "5.2.0.436"
-  sha256 "c0591e474e30d6451e190ffd8caff8622260bedaaac00278ddbf24f81aa127d1"
+  version "5.4.5.550"
 
-  url "https://ccmdl.adobe.com/AdobeProducts/KCCC/CCD/#{version.major_minor.dots_to_underscores}/osx10/ACCCx#{version.dots_to_underscores}.dmg"
+  if Hardware::CPU.intel?
+    sha256 "2efca959497b9f2fe3278a64341aa8a817e3855b1db9a9768f99259ef56e5227"
+
+    url "https://ccmdl.adobe.com/AdobeProducts/KCCC/CCD/#{version.major_minor_patch.dots_to_underscores}/osx10/ACCCx#{version.dots_to_underscores}.dmg"
+  else
+    sha256 "fe77eb37c4cbebe57750834063d8c01233887585252400dd8cfa2fb77b2a8fb3"
+
+    url "https://ccmdl.adobe.com/AdobeProducts/KCCC/CCD/#{version.major_minor_patch.dots_to_underscores}/macarm64/ACCCx#{version.dots_to_underscores}.dmg"
+  end
+
   name "Adobe Creative Cloud"
-  homepage "https://creative.adobe.com/products/creative-cloud"
+  desc "Collection of apps and services for photography, design, video, web, and UX"
+  homepage "https://www.adobe.com/creativecloud.html"
+
+  livecheck do
+    url "https://helpx.adobe.com/creative-cloud/release-note/cc-release-notes.html"
+    regex(/Version\s*(\d+(?:\.\d+)+),?\s+(?:(?:was\s+)?released|for\s+macOS)/i)
+  end
+
+  auto_updates true
 
   installer script: {
     executable:   "#{staged_path}/Install.app/Contents/MacOS/Install",
@@ -19,7 +35,7 @@ cask "adobe-creative-cloud" do
 
   uninstall_postflight do
     stdout, * = system_command "/bin/launchctl", args: ["print", "gui/#{Process.uid}"]
-    ccx_processes = stdout.lines.grep(/com\.adobe\.CCXProcess\.\d{5}/) { $& }.uniq
+    ccx_processes = stdout.lines.grep(/com\.adobe\.CCXProcess\.\d{5}/) { Regexp.last_match(0) }.uniq
     ccx_processes.each { |id| system "/bin/launchctl", "bootout", "gui/#{Process.uid}/#{id}" }
   end
 

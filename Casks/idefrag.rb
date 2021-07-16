@@ -9,7 +9,14 @@ cask "idefrag" do
 
   url "https://coriolis-systems.com/downloads/iDefrag-#{version}.dmg"
   name "iDefrag"
+  desc "Disk optimizer and defragmentation tool"
   homepage "https://coriolis-systems.com/iDefrag/"
+
+  livecheck do
+    url :homepage
+    strategy :page_match
+    regex(%r{href=.*?/iDefrag-(\d+(?:\.\d+)*)\.dmg}i)
+  end
 
   depends_on macos: ">= :yosemite"
 

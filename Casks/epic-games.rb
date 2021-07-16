@@ -1,12 +1,17 @@
 cask "epic-games" do
-  version "10.17.0"
-  sha256 "3188930b5ace9393658d8fd93c399650611e18afbf27721a1d9164157df3f0a7"
+  version "12.1.7"
+  sha256 "c7548f11acd34fd3d817bbd862c822b0e420e24db51f9f9e7afbdc510034426c"
 
-  # epicgames-download1.akamaized.net/ was verified as official when first introduced to the cask
-  url "https://epicgames-download1.akamaized.net/Builds/UnrealEngineLauncher/Installers/Mac/EpicInstaller-#{version}.dmg"
-  appcast "https://macupdater.net/cgi-bin/check_urls/check_url_redirect.cgi?url=https://launcher-public-service-prod06.ol.epicgames.com/launcher/api/installer/download/EpicGamesLauncher.dmg"
+  url "https://epicgames-download1.akamaized.net/Builds/UnrealEngineLauncher/Installers/Mac/EpicInstaller-#{version}.dmg",
+      verified: "epicgames-download1.akamaized.net/"
   name "Epic Games Launcher"
+  desc "Launcher for *Epic Games* games"
   homepage "https://www.epicgames.com/"
+
+  livecheck do
+    url "https://launcher-public-service-prod06.ol.epicgames.com/launcher/api/installer/download/EpicGamesLauncher.dmg"
+    strategy :header_match
+  end
 
   auto_updates true
   depends_on macos: ">= :sierra"

@@ -1,12 +1,17 @@
 cask "microsoft-edge" do
-  version "85.0.564.44"
-  sha256 "c157a5fc10e3124b803b503b8eacf439b2b52b2a94440196171860d05860345c"
+  version "91.0.864.67"
+  sha256 "2bb1e36d9c69ef8020031e056942b222bd0b56fc82c361da75e0e4c0c5ac6abd"
 
-  # officecdn-microsoft-com.akamaized.net/ was verified as official when first introduced to the cask
-  url "https://officecdn-microsoft-com.akamaized.net/pr/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/MicrosoftEdge-#{version}.pkg"
-  appcast "https://macupdater.net/cgi-bin/check_urls/check_url_redirect.cgi?url=https://go.microsoft.com/fwlink/?linkid=2069148"
+  url "https://officecdn-microsoft-com.akamaized.net/pr/03ADF619-38C6-4249-95FF-4A01C0FFC962/MacAutoupdate/MicrosoftEdge-#{version}.pkg",
+      verified: "officecdn-microsoft-com.akamaized.net/"
   name "Microsoft Edge"
+  desc "Web browser"
   homepage "https://www.microsoft.com/edge"
+
+  livecheck do
+    url "https://go.microsoft.com/fwlink/?linkid=2069148"
+    strategy :header_match
+  end
 
   auto_updates true
   depends_on cask: "microsoft-auto-update"

@@ -1,11 +1,11 @@
 cask "praat" do
-  version "6.1.16"
-  sha256 "21c01fb541f1f73fcf94aea62662a4a95996bd0fafb210f472dec2e53ab1fd65"
+  version "6.1.50"
+  sha256 "d9e3dbd3b32afa33e0708b72e78ec15dce3e0b0f01b29d9d9d30eb3c4f8c8341"
 
-  # github.com/praat/praat/ was verified as official when first introduced to the cask
-  url "https://github.com/praat/praat/releases/download/v#{version}/praat#{version.no_dots}_mac64.dmg"
-  appcast "https://github.com/praat/praat/releases.atom"
+  url "https://github.com/praat/praat/releases/download/v#{version}/praat#{version.no_dots}_mac.dmg",
+      verified: "github.com/praat/praat/"
   name "Praat"
+  desc "Doing phonetics by computer"
   homepage "https://www.fon.hum.uva.nl/praat/"
 
   app "Praat.app"

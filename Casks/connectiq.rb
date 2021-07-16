@@ -1,15 +1,22 @@
 cask "connectiq" do
-  version "3.1.8-2020-05-01-5a72d0ab2"
-  sha256 "32b2d5ec65329b4c2ed0c53fbc9afa7af097ac48776a4caaa3c92649f3c52649"
+  version "4.0.2-2021-05-13-9b3b7f19f"
+  sha256 "a7d9690555d3afaeed5a7a14c275fc858911b7ba8f931f3b1a67274381ce3e5c"
 
   url "https://developer.garmin.com/downloads/connect-iq/sdks/connectiq-sdk-mac-#{version}.dmg"
-  appcast "https://developer.garmin.com/connect-iq/sdk/"
   name "Garmin Connect IQ SDK"
+  desc "Build wearable experiences for Garmin devices and sensors with ConnectIQ SDK"
   homepage "https://developer.garmin.com/connect-iq/"
 
+  livecheck do
+    url "https://developer.garmin.com/downloads/connect-iq/sdks/sdks.json"
+    regex(/connectiq-sdk-mac[._-]v?(\d+(?:\.\d+)*-\d+(?:-\d+)*-\h+)\.dmg/i)
+  end
+
   app "connectiq-sdk-mac-#{version}/bin/ConnectIQ.app"
-  binary "connectiq-sdk-mac-#{version}/bin/connectiq"
+  app "connectiq-sdk-mac-#{version}/bin/MonkeyMotion.app"
+  binary "connectiq-sdk-mac-#{version}/bin/monkeybrains.jar"
   binary "connectiq-sdk-mac-#{version}/bin/monkeyc"
   binary "connectiq-sdk-mac-#{version}/bin/monkeydo"
+  binary "connectiq-sdk-mac-#{version}/bin/monkeydoc"
   binary "connectiq-sdk-mac-#{version}/bin/shell"
 end

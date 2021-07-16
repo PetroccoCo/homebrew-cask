@@ -4,9 +4,18 @@ cask "candybar" do
 
   url "https://download.panic.com/candybar/CandyBar%20#{version}.zip"
   name "CandyBar"
+  desc "Tool to modify file icons"
   homepage "https://panic.com/blog/candybar-mountain-lion-and-beyond/"
 
   app "CandyBar.app"
+
+  zap trash: [
+    "~/Library/Application Support/CandyBar",
+    "~/Library/Caches/Cleanup At Startup/CandyBar",
+    "~/Library/Caches/com.panic.CandyBar3",
+    "~/Library/Preferences/com.panic.CandyBar3.plist",
+    "~/Library/Saved Application State/com.panic.CandyBar3.savedState",
+  ]
 
   caveats do
     discontinued

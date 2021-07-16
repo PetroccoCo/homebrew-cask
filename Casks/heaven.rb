@@ -4,7 +4,14 @@ cask "heaven" do
 
   url "https://assets.unigine.com/d/Unigine_Heaven-#{version}.dmg"
   name "Heaven Benchmark"
+  desc "Performance and stability test for PC hardware"
   homepage "https://benchmark.unigine.com/heaven"
+
+  livecheck do
+    url :homepage
+    strategy :page_match
+    regex(%r{href=.*?/Unigine_Heaven-(\d+(?:\.\d+)*)\.dmg}i)
+  end
 
   app "Heaven.app"
 

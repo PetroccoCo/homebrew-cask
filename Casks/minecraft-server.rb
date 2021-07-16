@@ -1,12 +1,20 @@
 cask "minecraft-server" do
-  version "1.15.2,bb2b6b1aefcd70dfd1892149ac3a215f6c636b07"
-  sha256 "80cf86dc2004ec6a2dc0183d1c75a9af3ba0669f7c332e4247afb1d76fb67e8a"
+  version "1.17,0a269b5f2c5b93b1712d0f5dc43b6182b9ab254e"
+  sha256 "7b390d8d9f6b5649b226d82686aec7f11bd9aa4430bb5cac9072ffd32f3c1f4b"
 
-  # launcher.mojang.com/ was verified as official when first introduced to the cask
-  url "https://launcher.mojang.com/v#{version.major}/objects/#{version.after_comma}/server.jar"
-  appcast "https://minecraft.net/en-us/download/server/"
+  url "https://launcher.mojang.com/v#{version.major}/objects/#{version.after_comma}/server.jar",
+      verified: "launcher.mojang.com/"
   name "Minecraft Server"
-  homepage "https://minecraft.net/"
+  desc "Run a Minecraft multiplayer server"
+  homepage "https://www.minecraft.net/en-us/"
+
+  livecheck do
+    url "https://www.minecraft.net/en-us/download/server/"
+    strategy :page_match do |page|
+      page.scan(%r{href=.*?/objects/(\h+)/server\.jar[^>]*>minecraft[_-]server[._-]v?(\d+(?:\.\d+)*)\.jar}i)
+          .map { |match| "#{match[1]},#{match[0]}" }
+    end
+  end
 
   container type: :naked
 
@@ -19,7 +27,7 @@ cask "minecraft-server" do
   preflight do
     FileUtils.mkdir_p config_dir
 
-    IO.write shimscript, <<~EOS
+    File.write shimscript, <<~EOS
       #!/bin/sh
       cd '#{config_dir}' && \
         exec /usr/bin/java ${@:--Xms1024M -Xmx1024M} -jar '#{staged_path}/server.jar' nogui
@@ -30,7 +38,7 @@ cask "minecraft-server" do
 
   postflight do
     system_command shimscript
-    IO.write(eula_file, IO.read(eula_file).sub("eula=false", "eula=TRUE"))
+    File.write(eula_file, File.read(eula_file).sub("eula=false", "eula=TRUE"))
   end
 
   uninstall_preflight do
@@ -40,7 +48,7 @@ cask "minecraft-server" do
   zap trash: config_dir
 
   caveats do
-    depends_on_java
+    depends_on_java "16+"
     <<~EOS
       Configuration files are located in
 

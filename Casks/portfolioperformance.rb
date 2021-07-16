@@ -1,12 +1,17 @@
 cask "portfolioperformance" do
-  version "0.48.1"
-  sha256 "26f8f3f05c0ce6d49e39548b72fc72bbd571cc88f21747a9935debc0c97f5cce"
+  version "0.53.3"
+  sha256 "19aa449d32ab0db0f50198cd903fb4e655d40abe7caf3bc5832be8ea81fb9aea"
 
-  # github.com/buchen/portfolio/ was verified as official when first introduced to the cask
-  url "https://github.com/buchen/portfolio/releases/download/#{version}/PortfolioPerformance-#{version}.dmg"
-  appcast "https://github.com/buchen/portfolio/releases.atom"
+  url "https://github.com/buchen/portfolio/releases/download/#{version}/PortfolioPerformance-#{version}.dmg",
+      verified: "github.com/buchen/portfolio/"
   name "Portfolio Performance"
-  homepage "https://www.portfolio-performance.info/portfolio/"
+  desc "Calculate the overall performance of an investment portfolio"
+  homepage "https://www.portfolio-performance.info/en/"
+
+  livecheck do
+    url :url
+    regex(/^v?(\d+(?:\.\d+)+)$/)
+  end
 
   auto_updates true
 

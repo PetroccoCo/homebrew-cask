@@ -1,12 +1,17 @@
 cask "proclaim" do
-  version "3.0.0.0032"
-  sha256 "f3266b643bde32c9ad0f535b93ab64ff57f18782e03c6539b1e8b0cf883a6be5"
+  version "3.1.0.0077,311.0.77"
+  sha256 "80ac4f3478673ecdc1d003fe6f01c51027088a3800a48c7e371e57561a026cc3"
 
-  # logoscdn.com/Proclaim/ was verified as official when first introduced to the cask
-  url "https://downloads.logoscdn.com/Proclaim/Installer/#{version}/Proclaim.dmg"
-  appcast "http://downloads.proclaimonline.com/mac/appcast.xml"
+  url "https://downloads.logoscdn.com/Proclaim/Installer/#{version.before_comma}/Proclaim.dmg",
+      verified: "logoscdn.com/Proclaim/"
   name "Faithlife Proclaim"
-  homepage "https://proclaim.faithlife.com/"
+  desc "Church presentation software"
+  homepage "https://faithlife.com/products/proclaim"
+
+  livecheck do
+    url "http://downloads.proclaimonline.com/mac/appcast.xml"
+    strategy :sparkle
+  end
 
   depends_on macos: ">= :mojave"
 

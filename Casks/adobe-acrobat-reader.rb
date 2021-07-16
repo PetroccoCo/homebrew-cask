@@ -1,11 +1,16 @@
 cask "adobe-acrobat-reader" do
-  version "20.012.20041"
-  sha256 "d93a04cdf86bbea7a4ac19110f49948fea77e1ac011673dca8a588e3f7893c95"
+  version "21.005.20058"
+  sha256 "4aea9bd8e05ee8c83f7d88f24c239642a2c1c869c4676a66ce0b7e6eb18af356"
 
   url "https://ardownload2.adobe.com/pub/adobe/reader/mac/AcrobatDC/#{version.no_dots}/AcroRdrDC_#{version.no_dots}_MUI.dmg"
-  appcast "https://www.adobe.com/devnet-docs/acrobatetk/tools/ReleaseNotesDC/index.html"
   name "Adobe Acrobat Reader DC"
+  desc "View, print, and comment on PDF documents"
   homepage "https://acrobat.adobe.com/us/en/acrobat/pdf-reader.html"
+
+  livecheck do
+    url "https://www.adobe.com/devnet-docs/acrobatetk/tools/ReleaseNotesDC/index.html"
+    regex(/<em>(\d+(?:\.\d+)*) /i)
+  end
 
   auto_updates true
 
@@ -33,6 +38,7 @@ cask "adobe-acrobat-reader" do
     "~/Library/Preferences/com.adobe.AdobeRdrCEFHelper.plist",
     "~/Library/Preferences/com.adobe.crashreporter.plist",
     "~/Library/Caches/com.adobe.Reader",
+    "~/Library/HTTPStorages/com.adobe.Reader.binarycookies",
     "/Library/Preferences/com.adobe.reader.DC.WebResource.plist",
   ]
 end

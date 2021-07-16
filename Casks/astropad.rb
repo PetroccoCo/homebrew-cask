@@ -1,11 +1,16 @@
 cask "astropad" do
-  version "3.4.1"
-  sha256 "6edacd8c0985cd51304618a1ea9963a0a71fdf09be7af56d7d9c336b94b6ff3a"
+  version "3.6.0,3204"
+  sha256 "5b3d2ae1f6a345a500253c95962b113ac06a6db1726dc3cfd3a0fe6d6a08c421"
 
-  url "https://downloads.astropad.com/standard/Astropad-#{version}.dmg"
-  appcast "https://s3.amazonaws.com/astropad.com/downloads/sparkle.xml"
+  url "https://downloads.astropad.com/standard/Astropad-#{version.before_comma}.dmg"
   name "Astropad"
+  desc "Utility to turn an iPad into a drawing tablet"
   homepage "https://astropad.com/"
+
+  livecheck do
+    url "https://s3.amazonaws.com/astropad.com/downloads/sparkle.xml"
+    strategy :sparkle
+  end
 
   app "Astropad.app"
 

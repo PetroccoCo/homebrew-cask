@@ -1,11 +1,16 @@
 cask "navicat-for-sqlite" do
-  version "15.0.20"
-  sha256 "e9ebc4073fb876e8825d902ae9a1c6ec8323e725b466bf969597672224658329"
+  version "15.0.28"
+  sha256 :no_check
 
   url "http://download.navicat.com/download/navicat#{version.major_minor.no_dots}_sqlite_en.dmg"
-  appcast "https://updater.navicat.com/mac/navicat_updates.php?appName=Navicat%20for%20SQLite&appLang=en"
   name "Navicat for SQLite"
+  desc "Database administration and development tool for SQLite"
   homepage "https://www.navicat.com/products/navicat-for-sqlite"
+
+  livecheck do
+    url "https://updater.navicat.com/mac/navicat_updates.php?appName=Navicat%20for%20SQLite&appLang=en"
+    strategy :sparkle
+  end
 
   app "Navicat for SQLite.app"
 end

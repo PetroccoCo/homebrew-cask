@@ -1,21 +1,25 @@
 cask "imazing" do
-  version "2.12.0.13794"
-  sha256 "5a71a9acf95194023cf3e35fe429c05d0c42199ff1268da4d1718e7c515af619"
+  version "2.13.10,15078"
+  sha256 "8ffe8b061810f132741ed1b9c16d30c33c45e1c9dd7a5c193c0d62f72da19817"
 
-  url "https://downloads.imazing.com/mac/iMazing/#{version}/iMazing_#{version}.dmg"
-  appcast "https://downloads.imazing.com/com.DigiDNA.iMazing#{version.major}Mac.xml"
+  url "https://downloads.imazing.com/mac/iMazing/#{version.before_comma}.#{version.after_comma}/iMazing_#{version.before_comma}.#{version.after_comma}.dmg"
   name "iMazing"
+  desc "iPhone management application"
   homepage "https://imazing.com/"
 
+  livecheck do
+    url "https://downloads.imazing.com/com.DigiDNA.iMazing#{version.major}Mac.xml"
+    strategy :sparkle
+  end
+
   auto_updates true
-  conflicts_with cask: "imazing-mini"
 
   app "iMazing.app"
 
   uninstall login_item: "iMazing Mini",
             quit:       [
-              "com.DigiDNA.iMazing#{version}Mac",
-              "com.DigiDNA.iMazing#{version}Mac.Mini",
+              "com.DigiDNA.iMazing#{version.before_comma}.#{version.after_comma}Mac",
+              "com.DigiDNA.iMazing#{version.before_comma}.#{version.after_comma}Mac.Mini",
             ]
 
   zap trash: [

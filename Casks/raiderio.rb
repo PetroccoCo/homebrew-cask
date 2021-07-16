@@ -1,11 +1,11 @@
 cask "raiderio" do
-  version "1.5.2"
-  sha256 "b2f40473149d8fb260d13662f04e55fa37dadd08c275eecb18a477c6f1e795dd"
+  version "2.1.7"
+  sha256 "c9522e472cc1a81fb85376f3df3a063ec800d8b3714a7b88b8418f9cfc904e9a"
 
-  # github.com/RaiderIO/raiderio-client-builds was verified as official when first introduced to the cask
-  url "https://github.com/RaiderIO/raiderio-client-builds/releases/download/v#{version}/RaiderIO_Client.dmg"
-  appcast "https://github.com/RaiderIO/raiderio-client-builds/releases.atom"
+  url "https://github.com/RaiderIO/raiderio-client-builds/releases/download/v#{version}/RaiderIO_Client.dmg",
+      verified: "github.com/RaiderIO/raiderio-client-builds/"
   name "RaiderIO Client"
+  desc "World of Warcraft rankings site client"
   homepage "https://raider.io/"
 
   app "RaiderIO.app"

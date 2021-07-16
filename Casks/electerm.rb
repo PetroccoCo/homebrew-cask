@@ -1,10 +1,10 @@
 cask "electerm" do
-  version "1.4.4"
-  sha256 "c23aaf4090e65172363f7698d28fcf9cd79cbb9ae6bf63be27f670a94d5e6857"
+  version "1.13.4"
+  sha256 "1f192bc7570fcd0e8b77b746547cde0afcb23a8d875bbd1212b4fb4ba1321ece"
 
-  url "https://github.com/electerm/electerm/releases/download/v#{version}/electerm-#{version}-mac.dmg"
-  appcast "https://github.com/electerm/electerm/releases.atom"
+  url "https://github.com/electerm/electerm/releases/download/#{version}/electerm-#{version}-mac.dmg"
   name "electerm"
+  desc "Terminal/ssh/serial port/sftp client"
   homepage "https://github.com/electerm/electerm/"
 
   app "electerm.app"

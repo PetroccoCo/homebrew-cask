@@ -1,12 +1,17 @@
 cask "dingtalk" do
-  version "5.1.5.0"
-  sha256 "e65d9fdaf4be5537b43b8614a2509ee0ab0b4eb205ac738f3ae9b25d11c8b186"
+  version "6.0.15.8"
+  sha256 "fe26c48f262ab891e63ab97aacd2cb5abc3f711b854e07754e24e03291b6473b"
 
   url "https://dtapp-pub.dingtalk.com/dingtalk-desktop/mac_dmg/Release/DingTalk_v#{version}.dmg"
-  appcast "https://im.dingtalk.com/manifest/appcast_en.xml"
   name "DingTalk"
   name "钉钉"
+  desc "Teamwork app by Alibaba Group"
   homepage "https://www.dingtalk.com/"
+
+  livecheck do
+    url "https://www.dingtalk.com/mac/d/"
+    strategy :header_match
+  end
 
   auto_updates true
 

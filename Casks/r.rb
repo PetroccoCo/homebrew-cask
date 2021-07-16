@@ -1,11 +1,17 @@
 cask "r" do
-  version "4.0.2"
-  sha256 "1deaa727c424bd199a9564edd8284ea8cfe97fb54808b665f813e9098b1040e3"
+  version "4.1.0"
+  sha256 "2974eff8401ebd00d580fd98ba1a96352cc8924358443d41c8bdb66e358d7f36"
 
-  url "https://cloud.r-project.org/bin/macosx/R-#{version}.pkg"
-  appcast "https://cloud.r-project.org/bin/macosx/"
+  url "https://cloud.r-project.org/bin/macosx/base/R-#{version}.pkg"
   name "R"
+  desc "Environment for statistical computing and graphics"
   homepage "https://www.r-project.org/"
+
+  livecheck do
+    url "https://cloud.r-project.org/bin/macosx/"
+    strategy :page_match
+    regex(/href=.*?R-(\d+(?:\.\d+)*)\.pkg/i)
+  end
 
   depends_on macos: ">= :el_capitan"
 

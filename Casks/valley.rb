@@ -4,7 +4,14 @@ cask "valley" do
 
   url "https://assets.unigine.com/d/Unigine_Valley-#{version}.dmg"
   name "Valley Benchmark"
+  desc "Software to test performance and stability for PC hardware"
   homepage "https://benchmark.unigine.com/valley"
+
+  livecheck do
+    url :homepage
+    strategy :page_match
+    regex(%r{href=.*?/Unigine_Valley-(\d+(?:\.\d+)*)\.dmg}i)
+  end
 
   app "Valley.app"
 

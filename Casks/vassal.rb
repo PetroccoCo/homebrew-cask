@@ -1,11 +1,11 @@
 cask "vassal" do
-  version "3.4.0"
-  sha256 "73956fc0cf6bd95b26c9df1b61be8783c9b6f7c64287890a94664bcfde6acb4c"
+  version "3.5.8"
+  sha256 "247eecec789d14a9b752248407c3a8b054fa7f08e98e97a51f79d9afe254a60a"
 
-  # github.com/vassalengine/vassal was verified as official when first introduced to the cask
-  url "https://github.com/vassalengine/vassal/releases/download/#{version}/VASSAL-#{version}-macosx.dmg"
-  appcast "https://github.com/vassalengine/vassal/releases.atom"
+  url "https://github.com/vassalengine/vassal/releases/download/#{version}/VASSAL-#{version}-macos.dmg",
+      verified: "github.com/vassalengine/vassal/"
   name "VASSAL"
+  desc "Board game engine"
   homepage "http://www.vassalengine.org/"
 
   app "VASSAL.app"

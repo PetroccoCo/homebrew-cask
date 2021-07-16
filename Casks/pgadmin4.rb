@@ -1,12 +1,18 @@
 cask "pgadmin4" do
-  version "4.25"
-  sha256 "9f40a6d1f29e44fc7fbd1f3916eb5ab1b4ac4edde3f0ddd0173783e84f287c38"
+  version "5.5"
+  sha256 "e3dc7fac943fccf604f714b1d1f9f716381d7f8c1550d8a0b5fbd483294cac24"
 
-  # ftp.postgresql.org/ was verified as official when first introduced to the cask
-  url "https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v#{version}/macos/pgadmin4-#{version}.dmg"
-  appcast "https://ftp.postgresql.org/pub/pgadmin/pgadmin4/"
+  url "https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v#{version}/macos/pgadmin4-#{version}.dmg",
+      verified: "ftp.postgresql.org/"
   name "pgAdmin4"
+  desc "Administration and development platform for PostgreSQL"
   homepage "https://www.pgadmin.org/"
+
+  livecheck do
+    url "https://ftp.postgresql.org/pub/pgadmin/pgadmin4/"
+    strategy :page_match
+    regex(/href="v?(\d+(?:\.\d+)*)/i)
+  end
 
   app "pgAdmin 4.app"
 

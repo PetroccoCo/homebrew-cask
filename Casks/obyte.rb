@@ -1,11 +1,11 @@
 cask "obyte" do
-  version "3.2.0"
-  sha256 "3f27fc1627c1588141e5f6330d7aeca6c11db602a346cb9c86a5c94084b6258f"
+  version "3.3.2"
+  sha256 "a8326eeb9d13f1d1a7983bfc696eb27408458e3ef66a6932e05d6f18d79a2644"
 
-  # github.com/byteball/obyte-gui-wallet/ was verified as official when first introduced to the cask
-  url "https://github.com/byteball/obyte-gui-wallet/releases/download/v#{version}/Obyte-osx64.dmg"
-  appcast "https://github.com/byteball/obyte-gui-wallet/releases.atom"
+  url "https://github.com/byteball/obyte-gui-wallet/releases/download/v#{version}/Obyte-osx64.dmg",
+      verified: "github.com/byteball/obyte-gui-wallet/"
   name "Obyte"
+  desc "Smart payments made simple"
   homepage "https://obyte.org/"
 
   app "Obyte.app"

@@ -1,11 +1,16 @@
 cask "atext" do
-  version "2.36.4"
-  sha256 "34c8ca9a90176c8866eb0e33d2a2abf5f44f8a974b955eb8e4297e4a3e5e957f"
+  version "2.38.5,112"
+  sha256 :no_check
 
   url "https://www.trankynam.com/atext/downloads/aText.dmg"
-  appcast "https://www.trankynam.com/atext/aText-Appcast.xml"
   name "aText"
+  desc "Tool to replace abbreviations while typing"
   homepage "https://www.trankynam.com/atext/"
+
+  livecheck do
+    url "https://www.trankynam.com/atext/aText-Appcast.xml"
+    strategy :sparkle
+  end
 
   auto_updates true
 

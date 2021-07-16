@@ -4,7 +4,13 @@ cask "sdformatter" do
 
   url "https://www.sdcard.org/downloads/formatter/eula_mac/SDCardFormatterv#{version.major}_Mac.zip"
   name "SD Formatter"
-  homepage "https://www.sdcard.org/"
+  desc "Tool to format memory cards complying with the SD File System spec"
+  homepage "https://www.sdcard.org/downloads/formatter/"
+
+  livecheck do
+    url :homepage
+    regex(/SD Memory Card Formatter (\d+(?:\.\d+)*)/i)
+  end
 
   pkg "SDCardFormatterv#{version.major}_Mac/Install SD Card Formatter #{version}.mpkg"
 

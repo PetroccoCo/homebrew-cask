@@ -9,7 +9,14 @@ cask "ipartition" do
 
   url "https://coriolis-systems.com/downloads/iPartition-#{version}.dmg"
   name "iPartition"
+  desc "Disk partitioning tool"
   homepage "https://coriolis-systems.com/iPartition/"
+
+  livecheck do
+    url :homepage
+    strategy :page_match
+    regex(%r{href=.*?/iPartition-(\d+(?:\.\d+)*)\.dmg}i)
+  end
 
   app "iPartition.app"
 end

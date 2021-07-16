@@ -1,12 +1,13 @@
 cask "ha-menu" do
-  version "2.3.1"
-  sha256 "8f9efa785b6bb573bce41993552d503f1064cbe43f08e3c7f97cbe5cfb8843ec"
+  version "2.5.0"
+  sha256 "c5c7380fc2162bd283b54ba4e27ab828f8d7d94a14d316ea500819f462f06adc"
 
-  # github.com/codechimp-org/ha-menu/ was verified as official when first introduced to the cask
   url "https://github.com/codechimp-org/ha-menu/releases/download/#{version}/HA.Menu.zip"
-  appcast "https://github.com/codechimp-org/ha-menu/releases.atom"
   name "HA Menu"
-  homepage "https://hamenu.codechimp.org/"
+  desc "Menu Bar app to perform common Home Assistant functions"
+  homepage "https://github.com/codechimp-org/ha-menu"
+
+  depends_on macos: ">= :high_sierra"
 
   app "HA Menu.app"
 end

@@ -1,16 +1,23 @@
 cask "odrive" do
-  version "6777"
-  sha256 "4415e0c75d883e1a051d6a3af26bf675aa4dff1750f565ca0266eda5e00453fe"
+  version "7102"
+  sha256 "d0450041c048cea6b1c713777dcfc4dad0396ef92cdd340b4653b7cf546cb673"
 
-  # downloads can be found at https://www.odrive.com/downloaddesktop
-  # d3huse1s6vwzq6.cloudfront.net/ was verified as official when first introduced to the cask
-  url "https://d3huse1s6vwzq6.cloudfront.net/odrivesync.#{version}.pkg"
-  appcast "https://macupdater.net/cgi-bin/check_urls/check_url_redirect.cgi?url=https://www.odrive.com/downloaddesktop?platform=mac"
+  url "https://d3huse1s6vwzq6.cloudfront.net/odrivesync.#{version}.pkg",
+      verified: "d3huse1s6vwzq6.cloudfront.net/"
   name "odrive"
+  desc "Tool to make any cloud storage unified, synchronized, shareable, and encrypted"
   homepage "https://www.odrive.com/"
+
+  livecheck do
+    # https://docs.odrive.com/docs/odrive-usage-guide#install-desktop-sync
+    url "https://www.odrive.com/downloaddesktop?platform=mac"
+    strategy :header_match
+  end
 
   pkg "odrivesync.#{version}.pkg"
 
-  uninstall quit:    "com.oxygencloud.odrive",
+  uninstall quit:    [
+    "com.oxygencloud.odrive",
+  ],
             pkgutil: "com.oxygen.odrive.*"
 end

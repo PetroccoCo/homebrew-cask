@@ -1,10 +1,11 @@
 cask "menumeters" do
-  version "2.0.7"
-  sha256 "a63217c32670f19913f2f814c91b760b5df57413649440e8f1c80821b763713e"
+  version "2.1.4"
+  sha256 "a90aa89892c3bcdb9e76dd1c9576cb964b37a413bf6398073a6e282e10af7d74"
 
-  url "https://member.ipmu.jp/yuji.tachikawa/MenuMetersElCapitan/zips/MenuMeters_#{version}.zip"
-  appcast "https://member.ipmu.jp/yuji.tachikawa/MenuMetersElCapitan/MenuMeters-Update.xml"
+  url "https://github.com/yujitach/MenuMeters/releases/download/#{version}/MenuMeters_#{version}.zip",
+      verified: "github.com/yujitach/MenuMeters/"
   name "MenuMeters for El Capitan (and later)"
+  desc "Set of CPU, memory, disk, and network monitoring tools"
   homepage "https://member.ipmu.jp/yuji.tachikawa/MenuMetersElCapitan/"
 
   auto_updates true

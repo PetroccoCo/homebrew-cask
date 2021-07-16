@@ -1,13 +1,26 @@
 cask "slack" do
-  version "4.9.0"
-  sha256 "7329d2d40e3687c151738cee9bc387b0c8340b83e599f5149194edcd2c75ee00"
+  version "4.18.0"
 
-  # downloads.slack-edge.com/ was verified as official when first introduced to the cask
-  url "https://downloads.slack-edge.com/releases/macos/#{version}/prod/x64/Slack-#{version}-macOS.dmg"
-  appcast "https://macupdater.net/cgi-bin/check_urls/check_url_redirect.cgi?url=https://slack.com/ssb/download-osx"
+  if Hardware::CPU.intel?
+    sha256 "b3f01b8b98a59b611fe9ea7565c7553cfe80d99622eadef74381aed601ac8de2"
+
+    url "https://downloads.slack-edge.com/releases/macos/#{version}/prod/x64/Slack-#{version}-macOS.dmg",
+        verified: "downloads.slack-edge.com/"
+  else
+    sha256 "4bc90b418d2bfa039fe47214139b6170a990179382b9176e21f9158ca7ee8e62"
+
+    url "https://downloads.slack-edge.com/releases/macos/#{version}/prod/arm64/Slack-#{version}-macOS.dmg",
+        verified: "downloads.slack-edge.com/"
+  end
+
   name "Slack"
   desc "Team communication and collaboration software"
   homepage "https://slack.com/"
+
+  livecheck do
+    url "https://slack.com/ssb/download-osx"
+    strategy :header_match
+  end
 
   auto_updates true
   conflicts_with cask: "homebrew/cask-versions/slack-beta"
@@ -27,6 +40,7 @@ cask "slack" do
     "~/Library/Cookies/com.tinyspeck.slackmacgap.binarycookies",
     "~/Library/Group Containers/*.com.tinyspeck.slackmacgap",
     "~/Library/Group Containers/*.slack",
+    "~/Library/HTTPStorages/com.tinyspeck.slackmacgap.binarycookies",
     "~/Library/Logs/Slack",
     "~/Library/Preferences/ByHost/com.tinyspeck.slackmacgap.ShipIt.*.plist",
     "~/Library/Preferences/com.tinyspeck.slackmacgap.helper.plist",

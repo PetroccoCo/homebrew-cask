@@ -1,12 +1,17 @@
 cask "bibdesk" do
-  version "1.7.8"
-  sha256 "a0027927194b83e6f32d65d43ae5ed4b2f674b486ba962c679d4fd55ce9cac9b"
+  version "1.8.3,5619"
+  sha256 "1c9c88c25311476d8d5df78fbc9ad432de12303e3df14ef0cc29ad780a2422fb"
 
-  # downloads.sourceforge.net/bibdesk/ was verified as official when first introduced to the cask
-  url "https://downloads.sourceforge.net/bibdesk/BibDesk/BibDesk-#{version}/BibDesk-#{version}.dmg"
-  appcast "https://bibdesk.sourceforge.io/bibdesk.xml"
+  url "https://downloads.sourceforge.net/bibdesk/BibDesk/BibDesk-#{version.before_comma}/BibDesk-#{version.before_comma}.dmg",
+      verified: "downloads.sourceforge.net/bibdesk/"
   name "BibDesk"
+  desc "Edit and manage bibliographies"
   homepage "https://bibdesk.sourceforge.io/"
+
+  livecheck do
+    url "https://bibdesk.sourceforge.io/bibdesk.xml"
+    strategy :sparkle
+  end
 
   auto_updates true
 

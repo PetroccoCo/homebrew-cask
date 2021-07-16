@@ -4,7 +4,13 @@ cask "applepi-baker" do
 
   url "https://www.tweaking4all.com/downloads/raspberrypi/ApplePi-Baker-v#{version}.dmg"
   name "ApplePi-Baker"
+  desc "Backup and restore SD cards, USB drives, external HDD, etc"
   homepage "https://www.tweaking4all.com/hardware/raspberry-pi/applepi-baker-v2/"
+
+  livecheck do
+    url :homepage
+    regex(/href=.*?ApplePi-Baker[._-]v?(\d+(?:\.\d+)+)\.dmg/i)
+  end
 
   app "ApplePiBaker.app"
 

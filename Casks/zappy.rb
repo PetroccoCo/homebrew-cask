@@ -1,13 +1,19 @@
 cask "zappy" do
-  version "2.6.0"
-  sha256 "05cc5b4f8b56bb21ce8055c196d7fbc1084d0115e817d9aa1d2bd512976e08b2"
+  version "2.10.0"
+  sha256 "5a07c373fa0dd14dd64263882f316d28821f70e4d5873733ef5da257016d6a57"
 
-  url "https://zappy.zapier.com/releases/zappy-latest.dmg"
-  appcast "https://zappy.zapier.com/releases/appcast.xml"
+  url "https://zappy.zapier.com/releases/zappy-#{version}.dmg"
   name "Zappy"
+  desc "Screen capture tool for remote teams"
   homepage "https://zapier.com/zappy"
 
+  livecheck do
+    url "https://zappy.zapier.com/releases/appcast.xml"
+    strategy :sparkle
+  end
+
   auto_updates true
+  depends_on macos: ">= :high_sierra"
 
   app "Zappy.app"
 

@@ -1,19 +1,23 @@
 cask "popo" do
-  version "3.4.7"
-  sha256 "99b87db706a44923a5e9e1c2aa845f7c925d25b49c46cda710cddd16b0f69270"
+  version "3.25.9"
+  sha256 "075ced3a47ff45b5d84b054d8b06918c26b597a086281077f681df184843db3c"
 
   url "https://popo.netease.com/file/popomac/POPO_Mac_V#{version.dots_to_underscores}.dmg"
-  appcast "http://http.popo.netease.com:8080/api/open/jsonp/check_version?device=4",
-          must_contain: version.dots_to_underscores
   name "NetEase POPO"
+  desc "Instant messaging platform"
   homepage "https://popo.netease.com/"
+
+  livecheck do
+    url "http://http.popo.netease.com:8080/api/open/jsonp/check_version?device=4"
+    regex(/"version"\s*:\s*"(\d+(?:\.\d+)+)"/i)
+  end
 
   app "popo_mac.app"
 
   zap trash: [
     "~/Library/Application Support/Netease/Popo",
-    "~/Library/Saved Application State/com.netease.game.popo.savedState",
-    "~/Library/Preferences/com.netease.game.popo.plist",
     "~/Library/Caches/com.netease.game.popo",
+    "~/Library/Preferences/com.netease.game.popo.plist",
+    "~/Library/Saved Application State/com.netease.game.popo.savedState",
   ]
 end

@@ -1,13 +1,20 @@
 cask "timing" do
-  version "2020.9"
-  sha256 "1273666aa2d5ee91eae0a4e0ab99c409813f3a680672c2d6dfe3faee7f3e6d88"
+  version "2021.4.3,298"
+  sha256 "3e789cd9ff7b7af85020903bb7287e273efb4c83116e2abb319a72bc30f6694d"
 
-  url "https://updates.timingapp.com/download/Timing-#{version}.dmg"
-  appcast "https://timingapp.com/updates/timing2.xml"
+  url "https://updates.timingapp.com/download/Timing-#{version.before_comma}.dmg"
   name "Timing"
+  name "Timing 2"
+  desc "Automatic time and productivity tracking app"
   homepage "https://timingapp.com/"
 
+  livecheck do
+    url "https://updates.timingapp.com/updates/timing2.xml"
+    strategy :sparkle
+  end
+
   auto_updates true
+  depends_on macos: ">= :high_sierra"
 
   app "Timing.app"
 

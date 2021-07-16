@@ -1,12 +1,17 @@
 cask "cleanmymac" do
-  version "4.6.12"
-  sha256 "35a2488c1ecacce2e367d5457e0384c381e24003c305f8a0034b61bfc52747f8"
+  version "4.8.5,40805.0.2106230919"
+  sha256 "34842e0b6ca6ea720499de67253ae4f73cf8d36465f54b95909c4d3ee1bebc9a"
 
-  # dl.devmate.com/com.macpaw.CleanMyMac was verified as official when first introduced to the cask
-  url "https://dl.devmate.com/com.macpaw.CleanMyMac#{version.major}/CleanMyMacX.dmg"
-  appcast "https://updates.devmate.com/com.macpaw.CleanMyMac#{version.major}.xml"
+  url "https://dl.devmate.com/com.macpaw.CleanMyMac#{version.major}/CleanMyMacX.dmg",
+      verified: "dl.devmate.com/com.macpaw.CleanMyMac"
   name "CleanMyMac X"
+  desc "Tool to remove unnecessary files and folders from disk"
   homepage "https://macpaw.com/cleanmymac"
+
+  livecheck do
+    url "https://updates.devmate.com/com.macpaw.CleanMyMac#{version.major}.xml"
+    strategy :sparkle
+  end
 
   auto_updates true
 

@@ -1,11 +1,24 @@
 cask "unity-ios-support-for-editor" do
-  version "2020.1.1f1,2285c3239188"
-  sha256 "a8dc178639977b1013af7bcc4890bfc30288d49a3607f791b9a9a6c4ff0ef167"
+  version "2021.1.7f1,d91830b65d9b"
+  sha256 "714eab1a6978e113660d7aa0dc227c1e988efa514a9caeddd590b92e14b691f4"
 
-  url "https://netstorage.unity3d.com/unity/#{version.after_comma}/MacEditorTargetInstaller/UnitySetup-iOS-Support-for-Editor-#{version.before_comma}.pkg"
-  appcast "https://public-cdn.cloud.unity3d.com/hub/prod/releases-darwin.json"
+  url "https://download.unity3d.com/download_unity/#{version.after_comma}/MacEditorTargetInstaller/UnitySetup-iOS-Support-for-Editor-#{version.before_comma}.pkg",
+      verified: "download.unity3d.com/download_unity/"
   name "Unity iOS Build Support"
-  homepage "https://unity3d.com/unity/"
+  desc "iOS target support for Unity"
+  homepage "https://unity.com/products"
+
+  livecheck do
+    url "https://public-cdn.cloud.unity3d.com/hub/prod/releases-darwin.json"
+    strategy :page_match do |page|
+      page.scan(%r{
+        /download_unity/(\h+)/MacEditorTargetInstaller
+        /UnitySetup-iOS-Support-for-Editor-(\d+(?:\.\d+)*[a-z]*\d*)\.pkg
+      }ix).map do |match|
+        "#{match[1]},#{match[0]}"
+      end
+    end
+  end
 
   depends_on cask: "unity"
 

@@ -1,12 +1,17 @@
 cask "skim" do
-  version "1.5.11"
-  sha256 "8368b7919051d5d7577231d0d200f6db8b25000a6fc1278acdf656b86a744a0e"
+  version "1.6.4,134"
+  sha256 "90dcf7c1e62e439eebe0d8927fc74bf00fe2b98ecaeb3446197e903822836f89"
 
-  # downloads.sourceforge.net/skim-app/ was verified as official when first introduced to the cask
-  url "https://downloads.sourceforge.net/skim-app/Skim/Skim-#{version}/Skim-#{version}.dmg"
-  appcast "https://skim-app.sourceforge.io/skim.xml"
+  url "https://downloads.sourceforge.net/skim-app/Skim/Skim-#{version.before_comma}/Skim-#{version.before_comma}.dmg",
+      verified: "downloads.sourceforge.net/skim-app/"
   name "Skim"
+  desc "PDF reader and note-taking application"
   homepage "https://skim-app.sourceforge.io/"
+
+  livecheck do
+    url "https://skim-app.sourceforge.io/skim.xml"
+    strategy :sparkle
+  end
 
   auto_updates true
 

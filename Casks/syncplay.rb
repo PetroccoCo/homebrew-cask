@@ -1,12 +1,16 @@
 cask "syncplay" do
-  version "1.6.5"
-  sha256 "d595e5e781618a99b89d03142a748bacd03bee08b75eef4788b6a966751d9f7a"
+  version "1.6.8"
+  sha256 "9fbe6d616865511bbf75daa24ae6eb1ec40797ef1123265c7c50a5d9f1421ea3"
 
-  # github.com/Syncplay/syncplay/ was verified as official when first introduced to the cask
-  url "https://github.com/Syncplay/syncplay/releases/download/v#{version}/Syncplay_#{version}.dmg"
-  appcast "https://github.com/Syncplay/syncplay/releases.atom"
+  url "https://github.com/Syncplay/syncplay/releases/download/v#{version}/Syncplay_#{version}.dmg",
+      verified: "github.com/Syncplay/syncplay/"
   name "Syncplay"
   homepage "https://syncplay.pl/"
+
+  livecheck do
+    url :stable
+    regex(/^v?(\d+(?:\.\d+)+)$/)
+  end
 
   depends_on macos: ">= :sierra"
 

@@ -1,13 +1,19 @@
 cask "cleanshot" do
-  version "3.3.6"
-  sha256 "9786bb4b8d89549d01c43a9554d9ca4d3d9f001d86866ac926218dfe2205a826"
+  version "3.7.1"
+  sha256 "a84c59aa792e24651448e19893df68b364a36ce29113b9b081491daebfa10240"
 
   url "https://updates.getcleanshot.com/v#{version.major}/CleanShot-X-#{version}.dmg"
-  appcast "https://updates.getcleanshot.com/v#{version.major}/appcast.xml"
   name "CleanShot"
+  desc "Screen capturing tool"
   homepage "https://getcleanshot.com/"
 
+  livecheck do
+    url "https://updates.getcleanshot.com/v#{version.major}/appcast.xml"
+    strategy :sparkle
+  end
+
   auto_updates true
+  depends_on macos: ">= :sierra"
 
   app "CleanShot X.app"
 

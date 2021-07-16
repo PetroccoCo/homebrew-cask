@@ -1,15 +1,20 @@
 cask "tuple" do
-  version "0.78.2,2020-08-07-14b75be6"
-  sha256 "f76c93c81a2314fa8487f7d2685d7828626c9cb7dea597a0e44c9296fa5255de"
+  version "0.87.0-2021-06-21-f6705f82"
+  sha256 "230aedffa48d22c5e716b431e282cae210f4ac14d2cb378dcb9f11de59136d36"
 
-  # s3.us-east-2.amazonaws.com/tuple-releases/ was verified as official when first introduced to the cask
-  url "https://s3.us-east-2.amazonaws.com/tuple-releases/production/sparkle/tuple-#{version.before_comma}-#{version.after_comma}.zip"
-  appcast "https://s3.us-east-2.amazonaws.com/tuple-releases/production/sparkle/appcast.xml"
+  url "https://s3.us-east-2.amazonaws.com/tuple-releases/production/sparkle/tuple-#{version}.zip",
+      verified: "s3.us-east-2.amazonaws.com/tuple-releases/"
   name "Tuple"
+  desc "Remote pair programming app"
   homepage "https://tuple.app/"
 
+  livecheck do
+    url "https://s3.us-east-2.amazonaws.com/tuple-releases/production/sparkle/appcast.xml"
+    strategy :sparkle, &:version
+  end
+
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on macos: ">= :mojave"
 
   app "Tuple.app"
 

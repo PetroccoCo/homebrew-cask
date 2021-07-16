@@ -1,11 +1,16 @@
 cask "juicebar" do
-  version "1.0.63"
-  sha256 "0947fe502aace9e0472c14bada8c4ad4a4698a56d2a2e3ee389534849100cd74"
+  version "1.0.81"
+  sha256 "80942083efb236815cc64e0f667fabf145102a3690edf427a458cf7ae4aa46b6"
 
   url "https://mango.get-juicebar.com/v#{version.major}/bundles/macOS/latest"
-  appcast "https://macupdater.net/cgi-bin/check_urls/check_url_filename.cgi?url=https://mango.get-juicebar.com/v#{version.major}/bundles/macOS/latest"
   name "JuiceBar"
+  desc "Marketplace for Resolume"
   homepage "https://get-juicebar.com/"
+
+  livecheck do
+    url "https://mango.get-juicebar.com/v#{version.major}/bundles/macOS/latest"
+    strategy :header_match
+  end
 
   app "JuiceBar.app"
 end

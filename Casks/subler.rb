@@ -1,12 +1,17 @@
 cask "subler" do
-  version "1.6.5"
-  sha256 "7f57f7433dedf273b6e14d2d9d38518609027369f95a56e6f8284433b7a88b13"
+  version "1.6.11"
+  sha256 "0e258bd02433c2ad8bca165229804ba9565c328eda0a54d89c6f237f35a3678e"
 
-  # bitbucket.org/galad87/subler/ was verified as official when first introduced to the cask
-  url "https://bitbucket.org/galad87/subler/downloads/Subler-#{version}.zip"
-  appcast "https://subler.org/appcast/appcast.xml"
+  url "https://bitbucket.org/galad87/subler/downloads/Subler-#{version}.zip",
+      verified: "bitbucket.org/galad87/subler/"
   name "Subler"
+  desc "Mux and tag mp4 files"
   homepage "https://subler.org/"
+
+  livecheck do
+    url "https://subler.org/appcast/appcast.xml"
+    strategy :sparkle
+  end
 
   auto_updates true
 

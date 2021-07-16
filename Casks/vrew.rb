@@ -1,10 +1,16 @@
 cask "vrew" do
-  version "0.5.1"
-  sha256 "ba1248bd3226e60bd3a2a118ab443963744e3ebe9828835513cab4faccaf0ccf"
+  version "0.8.17"
+  sha256 "2b78d6f7f743ed274cbe4e5ec50842872275639fbbb9c360e7f2d512f88c2b2f"
 
   url "https://vrew-files.voyagerx.com/Vrew-#{version}.dmg"
   name "vrew"
+  desc "Video editor"
   homepage "https://vrew.voyagerx.com/"
+
+  livecheck do
+    url "https://s3-ap-northeast-2.amazonaws.com/vrew-files.voyagerx.com/latest-mac.yml"
+    strategy :electron_builder
+  end
 
   app "Vrew.app"
 

@@ -1,11 +1,18 @@
 cask "kodi" do
-  version "18.8-Leia"
-  sha256 "0ed0c5be2ae98028ff87d431d812cd8ae004145df4fd3d5439f0cd600bfe4cb9"
+  version "19.1-Matrix"
+  sha256 "87cf921712aeed5d5230b468425b777ef550a902d67ec5cbce1c744ba2cd369d"
 
   url "https://mirrors.kodi.tv/releases/osx/x86_64/kodi-#{version}-x86_64.dmg"
-  appcast "https://github.com/xbmc/xbmc/releases.atom"
   name "Kodi"
+  desc "Free and open-source media player"
   homepage "https://kodi.tv/"
+
+  livecheck do
+    url "https://github.com/xbmc/xbmc/releases"
+    regex(/^(\d+(?:\.\d+)*-[a-z]+)$/i)
+  end
+
+  depends_on macos: ">= :high_sierra"
 
   app "Kodi.app"
 

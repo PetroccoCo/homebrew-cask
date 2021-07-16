@@ -1,11 +1,17 @@
 cask "ilok-license-manager" do
-  version "5.3.0"
-  sha256 "ce0bb98bda001a8a194381c8ad5bae3090b4ca45936ab6e43cb5b010b9db47c1"
+  version "5.3.3,3346"
+  sha256 :no_check
 
   url "https://installers.ilok.com/iloklicensemanager/LicenseSupportInstallerMac.zip"
-  appcast "https://updates.ilok.com/iloklicensemanager/LicenseSupportInstallerMacAppcast.xml"
   name "iLok License Manager"
   homepage "https://ilok.com/#!license-manager"
+
+  livecheck do
+    url "https://updates.ilok.com/iloklicensemanager/LicenseSupportInstallerMacAppcast.xml"
+    strategy :sparkle do |item|
+      "#{item.short_version.split.first},#{item.version}"
+    end
+  end
 
   pkg "License Support.pkg"
 

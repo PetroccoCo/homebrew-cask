@@ -1,14 +1,20 @@
 cask "carbon-copy-cloner" do
-  version "5.1.21.6053"
-  sha256 "80d924cbbb2de63abf4f23e9ad4b7d3f7d64f831901386a83ff3659f7365d129"
+  version "6.0.2.7152"
+  sha256 "bb964f34bef88f93f7aafe0ca45f57aad7618de104fda836384c626c283f3ed6"
 
-  # bombich.scdn1.secure.raxcdn.com/software/files/ was verified as official when first introduced to the cask
-  url "https://bombich.scdn1.secure.raxcdn.com/software/files/ccc-#{version}.zip"
-  appcast "https://bombich.com/software/updates/ccc.php?os_major=10&os_minor=14&os_bugfix=0&ccc=#{version.split(".").last}&beta=0"
+  url "https://bombich.scdn1.secure.raxcdn.com/software/files/ccc-#{version}.zip",
+      verified: "bombich.scdn1.secure.raxcdn.com/software/files/"
   name "Carbon Copy Cloner"
+  desc "Hard disk backup and cloning utility"
   homepage "https://bombich.com/"
 
+  livecheck do
+    url "https://bombich.com/software/download_ccc.php?v=latest"
+    strategy :header_match
+  end
+
   auto_updates true
+  depends_on macos: ">= :catalina"
 
   app "Carbon Copy Cloner.app"
 

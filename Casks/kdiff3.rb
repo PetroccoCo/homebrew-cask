@@ -1,12 +1,17 @@
 cask "kdiff3" do
-  # note: "3" is not a version number, but an intrinsic part of the product name
-  version "1.8.3"
-  sha256 "b6ad193fb01392f6dd05b99989c86c578054d97961753b97a20855453e33708a"
+  # NOTE: "3" is not a version number, but an intrinsic part of the product name
+  version "1.9.2"
+  sha256 "0097bff0f98e659493fa66a4c630588767b0dc8c56f9152d73bde875ca1c3380"
 
   url "https://download.kde.org/stable/kdiff3/kdiff3-#{version}-macos-64.dmg"
-  appcast "https://invent.kde.org/sdk/kdiff3/-/tags?format=atom"
   name "KDiff3"
+  desc "Utility for comparing and merging files and directories"
   homepage "https://invent.kde.org/sdk/kdiff3"
+
+  livecheck do
+    url "https://download.kde.org/stable/kdiff3/"
+    regex(/href=["']?kdiff3[._-]?v?(\d+(?:\.\d+)+)[._-]?macos[._-]?64\.dmg/i)
+  end
 
   app "kdiff3.app"
   shimscript = "#{staged_path}/kdiff3.wrapper.sh"

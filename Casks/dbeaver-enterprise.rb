@@ -1,11 +1,16 @@
 cask "dbeaver-enterprise" do
-  version "7.2.0"
-  sha256 "c65bdf23a79f4fd6bf1ee912d8dc0b2af2c9a355500b4585b907e194983e9f99"
+  version "21.1.0"
+  sha256 "1f4861ad0c7f93559c8774b4a1a8de9e9f6d8263ecfefec9c88b2b317b85ef08"
 
   url "https://dbeaver.com/files/#{version}/dbeaver-ee-#{version}-macos.dmg"
-  appcast "https://dbeaver.com/product/version.xml"
   name "DBeaver Enterprise Edition"
+  desc "Universal database tool and SQL client"
   homepage "https://dbeaver.com/"
+
+  livecheck do
+    url "https://dbeaver.com/product/version.xml"
+    regex(%r{<number[^>]*?>v?(\d+(?:\.\d+)+)</number>}i)
+  end
 
   app "DBeaverEE.app"
 

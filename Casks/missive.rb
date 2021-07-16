@@ -1,12 +1,17 @@
 cask "missive" do
-  version "9.36.0"
-  sha256 "e22c2f0bfa48eedeffe07d9c1bbb6cd95806510319850a38688a13a1e615737d"
+  version "10.2.3"
+  sha256 "d1732a7d2e6b39eae4100a96c3d8aaa4234650008a415b5184e1e7f55a4d2615"
 
-  # d1weoh55n7oehu.cloudfront.net/ was verified as official when first introduced to the cask
-  url "https://d1weoh55n7oehu.cloudfront.net/#{version}/Missive-#{version}.dmg"
-  appcast "https://download.missiveapp.com/electron-updater/stable/darwin/latest-mac.yml"
-  name "missive"
+  url "https://d1weoh55n7oehu.cloudfront.net/#{version}/Missive-#{version}.dmg",
+      verified: "d1weoh55n7oehu.cloudfront.net/"
+  name "Missive"
+  desc "Team inbox and chat tool"
   homepage "https://missiveapp.com/"
+
+  livecheck do
+    url "https://download.missiveapp.com/electron-updater/stable/darwin/latest-mac.yml"
+    strategy :electron_builder
+  end
 
   app "Missive.app"
 end

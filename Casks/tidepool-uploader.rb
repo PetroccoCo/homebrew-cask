@@ -1,12 +1,17 @@
 cask "tidepool-uploader" do
-  version "2.33.0"
-  sha256 "b4a4f906ff8d6aa9d84276598167111f3bf72677de4e43fc5fedcc80872e981a"
+  version "2.36.3"
+  sha256 "33d3559091392ea7495271891db201e4b7c2a02f1081409f2a0cb8b3c7288c81"
 
-  # github.com/tidepool-org/chrome-uploader/ was verified as official when first introduced to the cask
-  url "https://github.com/tidepool-org/chrome-uploader/releases/download/v#{version}/tidepool-uploader-#{version}.dmg/"
-  appcast "https://github.com/tidepool-org/chrome-uploader/releases.atom"
+  url "https://github.com/tidepool-org/chrome-uploader/releases/download/v#{version}/tidepool-uploader-#{version}.dmg/",
+      verified: "github.com/tidepool-org/chrome-uploader/"
   name "Tidepool Uploader"
+  desc "Uploads diabetes device data to Tidepool's backend"
   homepage "https://tidepool.org/"
+
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
 
   app "Tidepool Uploader.app"
 end

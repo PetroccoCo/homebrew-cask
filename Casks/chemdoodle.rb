@@ -1,13 +1,19 @@
 cask "chemdoodle" do
-  version "11.0.0"
-  sha256 "80c4687fb8d75b9141c90f59bc7a451400ea1c8e7e11d4cded825af5a98f607e"
+  version "11.5.0"
+  sha256 "d65323044ef05028e333e847ea53c5c7e1e484d7e5fec8b67d9a2c47d2c99c98"
 
-  url "https://www.ichemlabs.com/downloads/ChemDoodle-osx-#{version}.dmg"
-  appcast "https://www.ichemlabs.com/download#chemdoodle/osx-installation-instructions/"
+  url "https://www.ichemlabs.com/downloads/ChemDoodle-macos-#{version}.dmg"
   name "ChemDoodle"
+  name "ChemDoodle 2D"
+  desc "2D chemical drawing, publishing and informatics"
   homepage "https://www.ichemlabs.com/"
 
-  depends_on macos: ">= :yosemite"
+  livecheck do
+    url "https://www.ichemlabs.com/download#chemdoodle/osx-installation-instructions/"
+    regex(%r{href=.*?/ChemDoodle[._-]macos[._-]v?(\d+(?:\.\d+)+)\.dmg}i)
+  end
+
+  depends_on macos: ">= :el_capitan"
 
   suite "ChemDoodle"
 end

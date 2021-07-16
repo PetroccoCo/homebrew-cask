@@ -1,12 +1,17 @@
 cask "loginputmac" do
-  version "2.3.7"
-  sha256 "a64bb6c4c608e5a87c37eb7345e1ddbcade52634c7eae24c9b49b5a385b58578"
+  version "2.4.6,23561"
+  sha256 "afdeed2e0b20c1806dbd4ac098bcdfc4b6f9b27edcee9ae96b74d4330c776708"
 
-  # loginput-mac2.content-delivery.top/ was verified as official when first introduced to the cask
-  url "https://loginput-mac2.content-delivery.top/loginputmac#{version.major}_latest.pkg"
-  appcast "https://im.logcg.com/appcast#{version.major}.xml"
+  url "https://loginput-mac2.content-delivery.top/loginputmac#{version.major}_latest.pkg",
+      verified: "loginput-mac2.content-delivery.top/"
   name "LoginputMac"
+  desc "Chinese input method"
   homepage "https://im.logcg.com/loginputmac#{version.major}"
+
+  livecheck do
+    url "https://im.logcg.com/appcast#{version.major}.xml"
+    strategy :sparkle
+  end
 
   auto_updates true
 

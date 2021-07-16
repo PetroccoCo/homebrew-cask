@@ -1,12 +1,24 @@
 cask "termius" do
-  version "6.4.1"
-  sha256 "96aa7b5d6ada75e17ef5ab4b0fb77a905db310203b07cc59a3312a2d3524faf2"
+  version "7.16.0"
+  sha256 :no_check
 
-  # s3.amazonaws.com/termius.desktop.autoupdate/mac/ was verified as official when first introduced to the cask
-  url "https://s3.amazonaws.com/termius.desktop.autoupdate/mac/Termius.dmg"
-  appcast "https://s3.amazonaws.com/termius.desktop.autoupdate/mac/latest-mac.yml"
+  if Hardware::CPU.intel?
+    url "https://autoupdate.termius.com/mac/Termius.dmg"
+  else
+    url "https://autoupdate.termius.com/mac-arm64/Termius.dmg"
+  end
+
   name "Termius"
+  desc "SSH client"
   homepage "https://www.termius.com/"
+
+  livecheck do
+    url "https://autoupdate.termius.com/mac/latest-mac.yml"
+    strategy :electron_builder
+  end
+
+  auto_updates true
+  depends_on macos: ">= :yosemite"
 
   app "Termius.app"
 

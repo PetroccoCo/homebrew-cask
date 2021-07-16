@@ -1,13 +1,20 @@
 cask "youdaonote" do
-  version "3.6.2"
-  sha256 "6529627d2b61ec455e45580c1bd47aa7585f6c173f77bb486700f0e7fbe1cd1a"
+  version "3.6.3"
+  sha256 :no_check
 
-  # download.ydstatic.com/notewebsite/downloads/ was verified as official when first introduced to the cask
-  url "https://download.ydstatic.com/notewebsite/downloads/YoudaoNote.dmg"
-  appcast "https://note.youdao.com/update/updateConfig.json"
+  url "https://download.ydstatic.com/notewebsite/downloads/YoudaoNote.dmg",
+      verified: "download.ydstatic.com/notewebsite/downloads/"
   name "YoudaoNote"
   name "有道云笔记"
+  desc "Multi-platform note application"
   homepage "https://note.youdao.com/"
+
+  livecheck do
+    url "https://note.youdao.com/update/updateConfig.json"
+    strategy :page_match do |page|
+      JSON.parse(page)["macNote"]["version"]
+    end
+  end
 
   app "YoudaoNote.app"
 

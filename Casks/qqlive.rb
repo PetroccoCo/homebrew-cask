@@ -1,12 +1,18 @@
 cask "qqlive" do
-  version "2.18.0.52819"
-  sha256 "3178d29231c439daa3c43e006a15b092ba62aa5d63276a604a295a42fc68c0ad"
+  version "2.21.0.52979"
+  sha256 "e1c615bc21e62b087857161c745f7128705df7f6b1d8f59078aa19aa2abab61e"
 
   url "https://dldir1.qq.com/qqtv/mac/TencentVideo_V#{version}.dmg"
-  appcast "https://v.qq.com/biu/download#Mac"
   name "QQLive"
+  name "TencentVideo"
   name "腾讯视频"
+  desc "Tencent video streaming and sharing platform"
   homepage "https://v.qq.com/download.html#mac"
+
+  livecheck do
+    url :homepage
+    regex(%r{href=.*?/TencentVideo[._-]V?(\d+(?:\.\d+)+)\.dmg}i)
+  end
 
   auto_updates true
   depends_on macos: ">= :yosemite"

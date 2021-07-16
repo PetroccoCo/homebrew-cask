@@ -1,12 +1,18 @@
 cask "qbittorrent" do
-  version "4.2.5"
-  sha256 "52f86aa8f0e3f5c15013d40ff7789861dc6afdce077dfa461ccff2a56ff0d8f7"
+  version "4.3.6"
+  sha256 "c9982f7132f500e0bcc47c6ab6140a566346bce8a6cecbd69b30d79bf334d3bd"
 
-  # sourceforge.net/qbittorrent/ was verified as official when first introduced to the cask
-  url "https://downloads.sourceforge.net/qbittorrent/qbittorrent-mac/qbittorrent-#{version}/qbittorrent-#{version}.dmg"
-  appcast "https://sourceforge.net/projects/qbittorrent/rss?path=/qbittorrent-mac"
+  url "https://downloads.sourceforge.net/qbittorrent/qbittorrent-mac/qbittorrent-#{version}/qbittorrent-#{version}.dmg",
+      verified: "sourceforge.net/qbittorrent/"
   name "qBittorrent"
+  desc "Peer to peer Bitorrent client"
   homepage "https://www.qbittorrent.org/"
+
+  livecheck do
+    url "https://sourceforge.net/projects/qbittorrent/rss?path=/qbittorrent-mac"
+    strategy :page_match
+    regex(/qbittorrent-(\d+(?:\.\d+)*)\.dmg/i)
+  end
 
   depends_on macos: ">= :high_sierra"
 

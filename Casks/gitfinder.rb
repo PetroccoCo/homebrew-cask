@@ -1,12 +1,18 @@
 cask "gitfinder" do
-  version "1.5"
-  sha256 "c6499d0461155947906c890d74c05c4a95f335b6c08c437f6dcca29d3ecaac8d"
+  version "1.7,100"
+  sha256 "ad582dc99ce8393a94056ea5d819d0dd2108fcc6598e73d90006c8750d5df09d"
 
-  # zigz.ag/GitFinder/ was verified as official when first introduced to the cask
-  url "https://zigz.ag/GitFinder/updates/GitFinder.dmg"
-  appcast "https://zigz.ag/GitFinder/updates/stablecast.xml"
+  url "https://get.gitfinder.com/GitFinder#{version.before_comma.dots_to_underscores}.dmg"
   name "GitFinder"
+  desc "Git client with Finder integration"
   homepage "https://gitfinder.com/"
+
+  livecheck do
+    url "https://zigz.ag/GitFinder/updates/stablecast.xml"
+    strategy :sparkle
+  end
+
+  depends_on macos: ">= :el_capitan"
 
   app "GitFinder.app"
 

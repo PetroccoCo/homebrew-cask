@@ -1,11 +1,11 @@
 cask "whalebird" do
-  version "4.2.2"
-  sha256 "5b806e719dfaaf212183dfc4655041f44af6cbfee26dff028d815d32dc05ac42"
+  version "4.4.1"
+  sha256 "493570b0f9c83f174cd1e84e688c5b3decd17d504402444092446bbded03ae04"
 
-  # github.com/h3poteto/whalebird-desktop/ was verified as official when first introduced to the cask
-  url "https://github.com/h3poteto/whalebird-desktop/releases/download/#{version}/Whalebird-#{version}-darwin-x64.dmg"
-  appcast "https://github.com/h3poteto/whalebird-desktop/releases.atom"
+  url "https://github.com/h3poteto/whalebird-desktop/releases/download/#{version}/Whalebird-#{version}-darwin-universal.dmg",
+      verified: "github.com/h3poteto/whalebird-desktop/"
   name "Whalebird"
+  desc "Mastodon, Pleroma and Misskey client"
   homepage "https://whalebird.social/"
 
   app "Whalebird.app"

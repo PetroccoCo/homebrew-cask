@@ -1,11 +1,24 @@
 cask "tempo" do
-  version "5.0.1"
-  sha256 "c49e418b01df1b0eb4807db4bdd58bb7e823ccee6192eedb92593063e3453d74"
+  version "5.21.0"
 
-  url "https://download.yourtempo.co/release/Tempo-#{version}.dmg"
-  appcast "https://download.yourtempo.co/release/latest-mac.yml"
+  if Hardware::CPU.intel?
+    sha256 "6464b0fd2a0f9a3cc021e268456974d0596425484ead28e9cd9d865b21b1bed7"
+
+    url "https://download.yourtempo.co/release/Tempo-#{version}.dmg"
+  else
+    sha256 "91e01e2ac220847de82ba1da7ae0392fb5eaa3d7cd0f31ab88753da2cf575ab3"
+
+    url "https://download.yourtempo.co/release-arm64/Tempo-#{version}.dmg"
+  end
+
   name "Tempo"
+  desc "Email client that delivers all email in batches"
   homepage "https://www.yourtempo.co/"
+
+  livecheck do
+    url "https://download.yourtempo.co/release/latest-mac.yml"
+    strategy :electron_builder
+  end
 
   auto_updates true
 

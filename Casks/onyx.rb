@@ -14,15 +14,23 @@ cask "onyx" do
   elsif MacOS.version <= :mojave
     version "3.6.8"
     sha256 "d27529bc497b03c2486fcb8f0d3bfbb4e4a30d4abe25eddcd059ab47aaea6672"
+  elsif MacOS.version <= :catalina
+    version "3.8.7"
+    sha256 "0dd8119ad3441c5130ca584ac90ad450c272aab8b577925561a2536da48d2d54"
   else
-    version "3.8.5"
-    sha256 "8c0ab6fbc0ade0444f34aad7d21c3c9274acf0b597a20c8f2311547a52bc74e9"
+    version "3.9.7"
+    sha256 "de6b55cbceee6fbe69262bd09a7edea90c2827baa26fe9a9a72f9db125636ccc"
   end
 
   url "https://www.titanium-software.fr/download/#{MacOS.version.to_s.delete(".")}/OnyX.dmg"
-  appcast "https://www.titanium-software.fr/en/onyx.html"
   name "OnyX"
+  desc "Verify system files structure, run miscellaneous maintenance and more"
   homepage "https://www.titanium-software.fr/en/onyx.html"
+
+  livecheck do
+    url :homepage
+    regex(/>\s*OnyX\s+v?(\d+(?:\.\d+)+)\s+for\s+[\w\s.-]*\s+#{MacOS.version}\s*</i)
+  end
 
   # Unusual case: The software will stop working, or is dangerous to run, on the next macOS release.
   depends_on macos: [
@@ -32,6 +40,7 @@ cask "onyx" do
     :high_sierra,
     :mojave,
     :catalina,
+    :big_sur,
   ]
 
   app "OnyX.app"

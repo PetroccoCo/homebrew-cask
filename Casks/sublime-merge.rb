@@ -1,12 +1,17 @@
 cask "sublime-merge" do
-  version "2032"
-  sha256 "b9745ee3db14576f1f9500cbd9457a13f161c097efdf753f72090457bf5b13fa"
+  version "2056"
+  sha256 "ae9bca1fcbc0865defa94873d46836533076d0ae7a14700d8f78c374832f50d5"
 
-  # download.sublimetext.com/ was verified as official when first introduced to the cask
-  url "https://download.sublimetext.com/sublime_merge_build_#{version}_mac.zip"
-  appcast "https://www.sublimemerge.com/updates/stable_update_check"
+  url "https://download.sublimetext.com/sublime_merge_build_#{version}_mac.zip",
+      verified: "download.sublimetext.com/"
   name "Sublime Merge"
+  desc "Git client"
   homepage "https://www.sublimemerge.com/"
+
+  livecheck do
+    url "https://www.sublimemerge.com/updates/stable_update_check"
+    regex(/"latest_version":\s*(\d+)/i)
+  end
 
   auto_updates true
   conflicts_with cask: "homebrew/cask-versions/sublime-merge-dev"

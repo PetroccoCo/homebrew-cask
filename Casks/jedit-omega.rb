@@ -3,14 +3,15 @@ cask "jedit-omega" do
     version "1.32"
     sha256 "251697fe6b76419b2cef41a89a2cb7d2e3f8caab0bc1ae82aed6c14a366fdad9"
   else
-    version "2.25"
-    sha256 "3496048ec1caea18618385507d7b4039d34fbf28f65abc947cd78284758c8ade"
+    version "2.39"
+    sha256 "3a6db023daa8015fb6636aecd6b6745b25378d971990d70171c1e23748a9bce8"
   end
 
-  # artman21.co.jp/ was verified as official when first introduced to the cask
-  url "http://download.artman21.co.jp/product/JeditOmega/JeditOmega#{version.no_dots}.dmg"
+  url "http://download.artman21.co.jp/product/JeditOmega/JeditOmega#{version.no_dots}.dmg",
+      verified: "artman21.co.jp/"
   appcast "http://www.artman21.com/en/jeditOmega/history.html"
   name "Jedit Ω"
+  desc "Text editor"
   homepage "http://www.artman21.com/en/jeditOmega/"
 
   app "Jedit Ω.app"

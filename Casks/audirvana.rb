@@ -1,13 +1,19 @@
 cask "audirvana" do
-  version "3.5.40"
-  sha256 "d06de8f2259f44c8f18d39b2c338df1ca09a97cb5a02e02fb7a406fb85cbc782"
+  version "3.5.46,3576"
+  sha256 "e024b8ac39aff8b5608814fb757a082f742233fb21a450d706a2a9929aa06562"
 
-  url "https://audirvana.com/delivery/Audirvana_#{version}.dmg"
-  appcast "https://audirvana.com/delivery/audirvana#{version.major}_#{version.minor}_appcast.xml"
+  url "https://audirvana.com/delivery/Audirvana_#{version.before_comma}.dmg"
   name "Audirvana"
+  desc "Audio playback software"
   homepage "https://audirvana.com/"
 
+  livecheck do
+    url "https://audirvana.com/delivery/audirvana#{version.major}_#{version.minor}_appcast.xml"
+    strategy :sparkle
+  end
+
   auto_updates true
+  depends_on macos: ">= :el_capitan"
 
   app "Audirvana.app"
 

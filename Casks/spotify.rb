@@ -1,11 +1,19 @@
 cask "spotify" do
-  version :latest
+  version "1.1.63.568.gda8cb5ac,1.1.63.568.gda8cb5ac-26"
   sha256 :no_check
 
-  # scdn.co/ was verified as official when first introduced to the cask
-  url "https://download.scdn.co/Spotify.dmg"
+  url "https://download.scdn.co/Spotify.dmg",
+      verified: "scdn.co/"
   name "Spotify"
+  desc "Music streaming service"
   homepage "https://www.spotify.com/"
+
+  livecheck do
+    url :url
+    strategy :extract_plist
+  end
+
+  auto_updates true
 
   app "Spotify.app"
 

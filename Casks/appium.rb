@@ -1,12 +1,17 @@
 cask "appium" do
-  version "1.18.0-2"
-  sha256 "072b71d3a5680a4f7b67372c6439da8ff4ee9390344fcca2d8ab3f9e1332a331"
+  version "1.21.0"
+  sha256 "bdcb55be5c8193466f1bf6665e8f821711423e87abd7c836618a8fdded57eeea"
 
-  # github.com/appium/appium-desktop/ was verified as official when first introduced to the cask
-  url "https://github.com/appium/appium-desktop/releases/download/v#{version}/Appium-mac-#{version}.dmg"
-  appcast "https://github.com/appium/appium-desktop/releases.atom"
+  url "https://github.com/appium/appium-desktop/releases/download/v#{version}/Appium-mac-#{version}.dmg",
+      verified: "github.com/appium/appium-desktop/"
   name "Appium Desktop"
+  desc "Graphical frontend to Appium automation server"
   homepage "https://appium.io/"
+
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
 
   app "Appium.app"
 

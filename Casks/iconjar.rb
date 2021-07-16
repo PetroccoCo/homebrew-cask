@@ -1,11 +1,16 @@
 cask "iconjar" do
-  version "2.5.0,42895"
-  sha256 "d48371cd1f3b75805f7004c35b167a67c173f00c1bf0842d6637851203125757"
+  version "2.8.1,48705"
+  sha256 "1806d0319ea63a669c01c07f4b733c4e27b232b424a159b4288e9f55a0a5e962"
 
   url "https://geticonjar.com/releases/IconJar.app.#{version.after_comma}.zip"
-  appcast "https://geticonjar.com/releases/stable.xml"
   name "IconJar"
+  desc "Icon organizer"
   homepage "https://geticonjar.com/"
+
+  livecheck do
+    url "https://geticonjar.com/releases/stable.xml"
+    strategy :sparkle
+  end
 
   auto_updates true
   depends_on macos: ">= :mojave"
